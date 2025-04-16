@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #fcdada, #ffeaea);
+  overflow: hidden;
+}
+
+audio {
+  display: none;
+}
+
+.letter-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  text-align: center;
+  background: #fff8f8;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #ff9ea9;
+  z-index: 10;
+}
+
+.popup {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffffcc;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px #ff9ea9;
+  z-index: 20;
+  width: 300px;
+}
+
+.hidden {
+  display: none;
+}
+
+.frame {
+  border: 5px solid #8b4b4b;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.frame img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.quote {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.2em;
+  color: #b14461;
+  margin: 10px 0;
+}
+
+.final-message {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.5em;
+  color: #8b1d45;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ff7b8a;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Hearts & Stars animation */
+.hearts, .stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://i.ibb.co/WK8WxBC/hearts-stars.gif');
+  background-size: cover;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  }
