@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Awantika</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Music -->
+  <audio id="bg-music" loop autoplay>
+    <source src="assets/audio/birthday-song.mp3" type="audio/mp3" />
+  </audio>
 
+  <!-- Heart and Star Animation -->
+  <div class="hearts"></div>
+  <div class="stars"></div>
+
+  <!-- Letter Intro -->
+  <div class="letter-container" onclick="openLetter()">
+    <div class="letter">
+      <p>Click to open your birthday surprise, Awantika...</p>
+    </div>
+  </div>
+
+  <!-- Popup Messages -->
+  <div class="popup hidden" id="popup1">
+    <div class="frame">
+      <img src="assets/images/pic1.jpg" alt="pic1" />
+    </div>
+    <p class="quote">"Teri muskurahat meri duniya hai..."</p>
+    <button onclick="nextPopup(2)">Next</button>
+  </div>
+
+  <div class="popup hidden" id="popup2">
+    <div class="frame">
+      <img src="assets/images/pic2.jpg" alt="pic2" />
+    </div>
+    <p class="quote">"Bachpan se ab tak, tu hi toh hai sabse khaas..."</p>
+    <button onclick="nextPopup(3)">Next</button>
+  </div>
+
+  <div class="popup hidden" id="popup3">
+    <div class="frame">
+      <img src="assets/images/pic3.jpg" alt="pic3" />
+    </div>
+    <p class="quote">"Aur haan... mujhe tumse kuch zyada hi pyaar ho gaya hai."</p>
+    <button onclick="finalPopup()">Final</button>
+  </div>
+
+  <div class="popup hidden" id="popup-final">
+    <p class="final-message">Happy Birthday, Awantika!<br/>Tera bachpan ka dost... aaj bhi sirf tera hi hai.</p>
+    <button onclick="replay()">Replay</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+  </html>
