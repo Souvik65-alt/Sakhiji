@@ -4,56 +4,146 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Birthday Awantika</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(to bottom, #ffe0f0, #ffe0ff);
+      overflow-x: hidden;
+      position: relative;
+    }
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ff1493;
+      animation: floatText 3s infinite ease-in-out;
+    }
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 100px 20px;
+      min-height: 100vh;
+      transition: transform 1s ease, opacity 1s ease;
+      opacity: 0.3;
+      position: relative;
+    }
+    .section.active {
+      transform: scale(1.1) rotateX(10deg);
+      opacity: 1;
+    }
+    .photo {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      margin: 20px;
+      transform: perspective(800px) rotateY(0deg);
+      transition: transform 0.5s ease-in-out;
+    }
+    .quote {
+      font-size: 1.8rem;
+      color: #800080;
+      max-width: 400px;
+      margin: 20px;
+      text-align: center;
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+    .section.active .quote {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+
+    /* Falling hearts and stars */
+    .animation-bg span {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall 10s linear infinite;
+    }
+    .heart { background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png'); }
+    .star { background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png'); }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Header with "Happy Birthday" -->
+  <header>Happy Birthday Awantika</header>
+
   <!-- Background Music -->
-  <audio id="bg-music" loop autoplay>
-    <source src="" type="audio/mp3" />
-  </audio>
+  <audio id="bg-music" src="background.mp3" autoplay loop></audio>
+  <script>
+    window.addEventListener('click', () => {
+      const music = document.getElementById('bg-music');
+      music.play();
+    });
+  </script>
 
-  <!-- Heart and Star Animation -->
-  <div class="hearts"></div>
-  <div class="stars"></div>
-
-  <!-- Letter Intro -->
-  <div class="letter-container" onclick="openLetter()">
-    <div class="letter">
-      <p>Click to open your birthday surprise, Awantika...</p>
-    </div>
+  <!-- Falling Hearts and Stars -->
+  <div class="animation-bg">
+    <script>
+      for (let i = 0; i < 20; i++) {
+        const span = document.createElement("span");
+        span.className = Math.random() > 0.5 ? 'heart' : 'star';
+        span.style.left = `${Math.random() * 100}vw`;
+        span.style.animationDuration = `${5 + Math.random() * 5}s`;
+        document.body.appendChild(span);
+      }
+    </script>
   </div>
 
-  <!-- Popup Messages -->
-  <div class="popup hidden" id="popup1">
-    <div class="frame">
-      <img src="assets/images/pic1.jpg" alt="pic1" />
-    </div>
-    <p class="quote">"Teri muskurahat meri duniya hai..."</p>
-    <button onclick="nextPopup(2)">Next</button>
+  <!-- Photos and Quotes (10 total) -->
+  <div class="container">
+    <!-- Example for 10 photos and quotes -->
+    ${Array.from({ length: 10 }, (_, i) => `
+      <div class="section" id="section${i + 1}">
+        <img src="img${i + 1}.jpg" class="photo" alt="Memory ${i + 1}">
+        <div class="quote">"This is quote number ${i + 1} that makes her smile."</div>
+      </div>
+    `).join('')}
   </div>
 
-  <div class="popup hidden" id="popup2">
-    <div class="frame">
-      <img src="assets/images/pic2.jpg" alt="pic2" />
-    </div>
-    <p class="quote">"Bachpan se ab tak, tu hi toh hai sabse khaas..."</p>
-    <button onclick="nextPopup(3)">Next</button>
-  </div>
+  <!-- Scroll Animation Script -->
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, { threshold: 0.6 });
 
-  <div class="popup hidden" id="popup3">
-    <div class="frame">
-      <img src="assets/images/pic3.jpg" alt="pic3" />
-    </div>
-    <p class="quote">"Aur haan... mujhe tumse kuch zyada hi pyaar ho gaya hai."</p>
-    <button onclick="finalPopup()">Final</button>
-  </div>
-
-  <div class="popup hidden" id="popup-final">
-    <p class="final-message">Happy Birthday, Awantika!<br/>Tera bachpan ka dost... aaj bhi sirf tera hi hai.</p>
-    <button onclick="replay()">Replay</button>
-  </div>
-
-  <script src="script.js"></script>
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
-  </html>
+          </html>
